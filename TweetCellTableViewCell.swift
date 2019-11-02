@@ -9,7 +9,11 @@
 import UIKit
 
 class TweetCellTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet var profilePicture: UIImageView!
+    @IBOutlet var tweet: UILabel!
+    @IBOutlet var userName: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -17,8 +21,5 @@ class TweetCellTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }
