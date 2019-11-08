@@ -18,6 +18,12 @@ class HomeTableViewController: UITableViewController {
         loadTweets(number: 20)
         refresh.addTarget(self, action: #selector(loadTweets), for: .valueChanged)
         tableView.refreshControl = refresh
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.loadTweets(number: 20)
     }
     
     @objc func loadTweets(number: Int) {
@@ -57,7 +63,10 @@ class HomeTableViewController: UITableViewController {
         
         cell.tweet.text = tweetsArray[indexPath.row]["text"] as? String
         cell.userName.text = user["name"] as? String
-    
+        cell.setFavorite(tweetsArray[indexPath.row]["favorited"] as! Bool)
+        cell.tweetId = tweetsArray[indexPath.row]["id"] as! Int
+        cell.setRetweeted(tweetsArray[indexPath.row]["retweeted"] as! Bool)
+        
         return cell
     }
     
@@ -69,6 +78,10 @@ class HomeTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 190
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
